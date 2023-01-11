@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Real Estates</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <link rel="stylesheet" href="./css/bootstrap.min.css" />
+  <body>
+    <div id="app" class="container">
+      <div class="mt-3 mb-3">Get latest offers here: 
+      <button @Click="getImmos()" class="btn btn-outline-primary">Show</button>
+      </div>
+      <div v-if="editToken === true" class="row">
+        <input @input="event => text = event.target.value" v-model="chosenImmo.price" type="text" class="form-control w-25 mr-2">
+        <button @Click="changePrice()" class="btn btn-outline-success"><i class="fa-solid fa-check"></i></button>
+      </div>
+      <table class="table table-hover">
+        <thead>
+          <th>Image</th>
+          <th>Title</th>
+          <th>Address</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          <tr v-for="i of immos" >
+            <td>
+           <img
+                  :src= "i.image"
+                  height="120"
+                  alt="picture of the building"
+              /></a>
+            </td>
+            <td class="align-middle">{{i.title}}</td>
+            <td class="align-middle">{{i.postCode}} <br> {{i.city}} <br> {{i.country}}</td>
+            <td class="align-middle"><div v-if="i.id === chosenImmo2.id" class="selectedElement">{{i.price.toLocaleString()}} €</div><div v-else>{{i.price.toLocaleString()}} €</div></td>
+            <td class="align-middle">
+              <button @click="delImmo(i)" class="btn btn-sm btn-outline-danger mr-1">
+                <i class="fa-regular fa-trash-can"></i></button>
+              <button @click="editImmo(i)" class="btn btn-sm btn-outline-primary">
+                <i class="fa-solid fa-pencil"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.45/vue.global.min.js"></script>
+    <script src="./js/app.js"></script>
+  </body>
+</html>
