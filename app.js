@@ -3,7 +3,6 @@ import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import path from 'path';
-import cors from 'cors';
 import immoRouter from './routes/immo.js';
 
 dotenv.config();
